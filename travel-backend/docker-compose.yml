@@ -55,6 +55,20 @@ services:
     networks:
       - travel-network
 
+  adminer:
+    image: adminer:latest
+    container_name: travel-adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    networks:
+      - travel-network
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+      ADMINER_DESIGN: pepa-linha-dark
+
 networks:
   travel-network:
     driver: bridge
